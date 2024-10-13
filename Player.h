@@ -42,3 +42,9 @@ struct Player_t
    } while ( false )
 
 #endif
+
+// State updates
+void playerUpdateState( struct Player_t* player );
+
+// Draw
+void playerDrawPlayer( struct Player_t* player );

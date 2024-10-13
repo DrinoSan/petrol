@@ -59,28 +59,8 @@ void InitGame(void)
 // Update game (one frame)
 void UpdateGame(void)
 {
-   // Update and Draw
-   // Handling of player sprite
-   //----------------------------------------------------------------------------------
-   player.framesCounter++;
-
-   if ( player.framesCounter >= ( 60 / player.framesSpeed ) )
-   {
-      player.framesCounter = 0;
-      player.currentFrame++;
-
-      if ( player.currentFrame > 5 )
-         player.currentFrame = 0;
-
-      player.textureFrameRec.x =
-          ( float ) player.currentFrame * ( float ) player.texture.width / 6;
-   }
-
-   // Control frames speed
-   if ( IsKeyPressed( KEY_RIGHT ) )
-      player.framesSpeed++;
-   else if ( IsKeyPressed( KEY_LEFT ) )
-      player.framesSpeed--;
+	// Player update stuff
+	playerUpdateState( &player );
 }
 
 //-----------------------------------------------------------------------------
@@ -93,9 +73,8 @@ void DrawGame(void)
    DrawText( "Petrol", screenWidth / 2 - MeasureText( "Petrol", 40 ) / 2,
              screenHeight / 2 - 40, 40, BLACK );
 
-   DrawTextureRec( player.texture, player.textureFrameRec,
-                   player.texturePosition,
-                   WHITE );   // Draw part of the texture
+	// Player draw stuff only sprite stuff
+	playerDrawPlayer( &player );
 
    DrawText( "(c) Scarfy sprite by Eiden Marsal", screenWidth - 200,
              screenHeight - 20, 10, GRAY );
